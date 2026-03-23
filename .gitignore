@@ -168,6 +168,26 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# ML artifacts (modelos exportados)
+ml/artifacts/*.h5
+ml/artifacts/*.json
+ml/artifacts/*.pkl
+ml/artifacts/*.pt
+
+# Datasets (archivos pesados)
+ml/data/*.xlsx
+ml/data/*.csv
+
+# Node / React
+node_modules/
+client/dist/
+client/build/
+.next/
+
+# MLflow
+mlruns/
+mlartifacts/
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore

@@ -1,0 +1,43 @@
+[project]
+name = "unir-fraude-triaje"
+version = "0.1.0"
+description = "Sistema de Triaje Inteligente para Detección de Fraude en Reclamaciones de Automóvil"
+requires-python = ">=3.10"
+dependencies = [
+    "mlflow>=3.10.1",
+    "tensorboard>=2.20.0",
+]
+
+[project.optional-dependencies]
+ml = [
+    "pandas",
+    "numpy",
+    "faker",
+    "openai",
+    "tqdm",
+    "openpyxl",
+    "scikit-learn",
+    "xgboost",
+    "tensorflow",
+    "torch",
+    "transformers",
+    "matplotlib",
+    "seaborn",
+    "mlflow",
+    "ipywidgets",
+    "ipykernel",
+    "python-dotenv",
+]
+api = [
+    "fastapi",
+    "uvicorn[standard]",
+    "xgboost",
+    "tensorflow",
+    "torch",
+    "transformers",
+    "scikit-learn",
+    "pandas",
+    "numpy",
+    "python-dotenv",
+    "python-multipart",
+]
