@@ -6,8 +6,10 @@ os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")  # suprimir INFO y WARNING de
 from pathlib import Path
 
 import mlflow
+import mlflow.data
 import mlflow.keras
 import mlflow.xgboost
+import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -57,6 +59,18 @@ def run_training():
 
     with mlflow.start_run(run_name="hybrid_stacking") as run:
         mlflow.log_params(PARAMS)
+
+        # Registrar el dataset en MLflow
+        df = pd.read_excel(data_path)
+        dataset = mlflow.data.from_pandas(
+            df,
+            source=str(data_path),
+            name="dataset_reclamos_ia_ruidoso_extremo",
+            targets="Prediccion_Fraude",
+        )
+        mlflow.log_input(dataset, context="training")
+        print(f"[MLflow] Dataset registrado: {len(df):,} registros, {df.columns.size} columnas")
+        del df  # liberar memoria antes del pipeline
 
         metrics, artifacts = run_pipeline(PROJECT_ROOT, PARAMS)
 
