@@ -5,6 +5,7 @@ description = "Sistema de Triaje Inteligente para Detección de Fraude en Reclam
 requires-python = ">=3.10"
 dependencies = [
     "mlflow>=3.10.1",
+    "tensorboard>=2.20.0",
 ]
 
 [project.optional-dependencies]
