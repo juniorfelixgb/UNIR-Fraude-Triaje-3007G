@@ -1,0 +1,55 @@
+{
+    "info": {
+        "name": "Sistema de Detección de Fraude en Reclamaciones de Vehículos",
+        "description": "API para detectar fraudes en reclamaciones de seguros de automóviles usando modelo híbrido XGBoost + DistilBERT",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Predicción de Fraude - Caso Legítimo",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"Customer_Age\": 35, \"Gender\": \"M\", \"Insured_MaritalStatus\": \"Casado\", \"Insured_Occupation\": \"Empleado Privado\", \"Insured_Zip\": 28001, \"Insured_Inception_Date\": \"2018-01-01\", \"Policy_Start_Date\": \"2023-01-01\", \"Last_Purchase_History_Date\": \"2023-01-01\", \"Coverage_description\": \"Responsabilidad Civil\", \"Coverage_Amount\": 50000, \"Premium_Amount\": 1200, \"Beneficiary_Type_Description\": \"Asegurado\", \"Claim_History_Count_This_Policy\": 0, \"Claim_Frequency_Last_12_Month\": 0, \"Vehicle_Make\": \"Toyota\", \"Vehicle_Model\": \"Corolla\", \"Model_Year\": 2020, \"Incident_Date\": \"2023-06-15\", \"Date_Reported\": \"2023-06-16\", \"Claim_Amount\": 3000, \"LossType_Description\": \"Pérdida Parcial\", \"Branch_Description\": \"Punta Cana\", \"WorkShop_Name\": \"Taller Los Prados\", \"Claim_Description\": \"Tuve un accidente en la autopista cuando un vehículo me cerró el paso. El impacto fue en la parte trasera izquierda.\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:5002/predict",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5002",
+                    "path": ["predict"]
+                }
+            }
+        },
+        {
+            "name": "Predicción de Fraude - Caso Fraudulento",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"Customer_Age\": 25, \"Gender\": \"M\", \"Insured_MaritalStatus\": \"Soltero\", \"Insured_Occupation\": \"Desempleado\", \"Insured_Zip\": 28001, \"Insured_Inception_Date\": \"2022-01-01\", \"Policy_Start_Date\": \"2023-01-01\", \"Last_Purchase_History_Date\": \"2023-01-01\", \"Coverage_description\": \"Incendio\", \"Coverage_Amount\": 20000, \"Premium_Amount\": 400, \"Beneficiary_Type_Description\": \"Asegurado\", \"Claim_History_Count_This_Policy\": 3, \"Claim_Frequency_Last_12_Month\": 2, \"Vehicle_Make\": \"Honda\", \"Vehicle_Model\": \"Civic\", \"Model_Year\": 2015, \"Incident_Date\": \"2023-06-01\", \"Date_Reported\": \"2023-06-10\", \"Claim_Amount\": 15000, \"LossType_Description\": \"Pérdida Total\", \"Branch_Description\": \"Oficina Principal\", \"WorkShop_Name\": \"Auto Pintura J&J\", \"Claim_Description\": \"El vehículo sufrió daños inexplicables. Necesito el dinero urgentemente para comprar un auto nuevo.\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:5002/predict",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5002",
+                    "path": ["predict"]
+                }
+            }
+        }
+    ]
+}
